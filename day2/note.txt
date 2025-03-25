@@ -1,0 +1,76 @@
+
+
+
+PS C:\Users\ventu\Downloads\aws seminar\day2> icacls .\my-public-server-01-key.pem /inheritance:r
+PS C:\Users\ventu\Downloads\aws seminar\day2> icacls .\my-public-server-01-key.pem /grant:r "ventu:R"
+
+
+PS C:\Users\ventu\Downloads\aws seminar\day2> ssh -i .\my-public-server-01-key.pem ec2-user@3.17.79.101
+
+
+
+
+=========================================================
+
+
+To connect to an Amazon EC2 instance using SSH on Windows 11, follow these steps:
+
+### **Option 1: Using Windows Terminal (Recommended)**
+1. **Open Windows Terminal (or Command Prompt/PowerShell)**
+   - Press `Win + X` → Click **Terminal (Admin)** or **PowerShell (Admin)**.
+
+2. **Navigate to Your Key Pair Directory**
+   ```sh
+   cd C:\path\to\your\key
+   ```
+   *(Replace `C:\path\to\your\key` with the actual path where your `.pem` key file is stored.)*
+
+3. **Change Key File Permissions**
+   SSH requires the private key to have restricted permissions.
+   ```sh
+   icacls "your-key.pem" /inheritance:r
+   icacls "your-key.pem" /grant:r "%USERNAME%:R"
+   ```
+   *(Replace `your-key.pem` with your actual key filename.)*
+   *(Replace `%USERNAME%` with your computer username.)*
+
+
+Option 2: Manually Change File Permissions
+	Right-click on your-key.pem → Properties.
+	Go to the Security tab → Advanced.
+	Click Disable inheritance → Convert inherited permissions into explicit permissions.
+	Remove all users except your account.
+	Click Add → Select a principal → Your username.
+	Check Read & Read & execute (DO NOT allow Full Control). ***IMPORTANT***
+	Click OK and Apply.
+
+
+4. **Connect to EC2 Instance**
+   ```sh
+   ssh -i your-key.pem ec2-user@your-ec2-public-ip
+   ```
+   - **For Amazon Linux/Ubuntu**: Use `ec2-user`
+   - **For Ubuntu**: Use `ubuntu`
+   - **For Debian**: Use `admin`
+   - **For CentOS/RHEL**: Use `centos`
+
+### **Option 2: Using PuTTY (GUI-Based)**
+If you prefer a graphical SSH client:
+
+1. **Download and Install PuTTY**  
+   - Download from [PuTTY Official Site](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
+
+2. **Convert `.pem` to `.ppk` (For PuTTY)**
+   - Open **PuTTYgen** → Click **Load** → Select `.pem` file.
+   - Click **Save private key** → Save as `.ppk`.
+
+3. **Connect with PuTTY**
+   - Open **PuTTY**.
+   - In "Host Name," enter:  
+     ```
+     ec2-user@your-ec2-public-ip
+     ```
+   - In **Connection > SSH > Auth**, browse and select your `.ppk` file.
+   - Click **Open** to connect.
+
+Let me know if you run into any issues! 🚀
