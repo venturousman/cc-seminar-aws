@@ -1,0 +1,13 @@
+
+- Launch 2 EC2 instances with Amazon Linux
+- Install a web server using the command: sudo yum install nginx
+- Start Nginx: sudo systemctl start nginx
+- Change the file /usr/share/nginx/html/index with the content below:
+	sudo vim /usr/share/nginx/html/index.html
+	Press i to enter Insert mode (you will see -- INSERT -- at the bottom). Start editing the file.
+	Press Esc to exit Insert mode. 
+		Save and exit:		:wq OR :x
+		Save without exiting:   :w
+		Exit without saving (discard changes):		:q!
+
+
