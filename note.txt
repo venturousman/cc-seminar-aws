@@ -1,0 +1,27 @@
+Yes! In AWS, **Elastic Load Balancer (ELB)** can **automatically know and register EC2 instances in an Auto Scaling Group**. This is one of the key benefits of combining ELB + Auto Scaling.
+
+Here’s how it works:
+
+### ✅ How It Works
+When you create an **Auto Scaling Group (ASG)**, you can specify a **Target Group** or directly an **ELB**.  
+The ASG will automatically:
+- **Register new instances** to the Load Balancer when they are launched.
+- **Deregister instances** from the Load Balancer when they are terminated.
+- **Perform health checks** and remove unhealthy instances from the Target Group.
+
+So you don’t have to manually register/deregister instances when scaling happens.
+
+### 🔥 Example Architecture
+Auto Scaling Group → linked to Target Group → attached to an **Application Load Balancer (ALB)** or **Network Load Balancer (NLB)**.
+
+### 🎯 Quick Summary
+| Component | Role |
+|:-:|:-:|
+| Auto Scaling Group | Automatically adds/removes EC2 instances |
+| Target Group | Holds healthy instances for the Load Balancer |
+| Load Balancer (ALB/NLB) | Distributes traffic to instances in the Target Group |
+
+---
+
+If you want, I can show you a sample **Terraform config / CloudFormation template / AWS Console setup steps** for this flow.  
+Shall I?

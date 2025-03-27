@@ -1,0 +1,28 @@
+
+MyPassW0rd12345
+
+mysql -h database-1.cjk8eggskk26.us-east-2.rds.amazonaws.com -u admin -p
+
+====================================
+
+echo "[mongodb-org-8.0]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/amazon/2023/mongodb-org/8.0/x86_64/
+gpgcheck=1
+enabled=1
+gpgkey=https://pgp.mongodb.com/server-8.0.asc" | sudo tee /etc/yum.repos.d/mongodb-org-8.0.repo
+
+
+wget https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
+
+
+mongosh docdb-2025-03-27-20-52-30.cluster-cjk8eggskk26.us-east-2.docdb.amazonaws.com:27017 --tls --tlsCAFile global-bundle.pem --retryWrites=false --username nht --password MyPassW0rd12345 
+
+
+mongodb://nht:MyPassW0rd12345@docdb-2025-03-27-20-52-30.cluster-cjk8eggskk26.us-east-2.docdb.amazonaws.com:27017/?tls=true&tlsCAFile=global-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false
+
+use mydb
+
+db.students.insert({name: "Peter", id: "S1000"})
+
+db.students.find()
