@@ -1,0 +1,1 @@
+Functions > select yr function > Configuration > Permissions > Excecution role > click the Role name > add permission AmazonDynamoDBFullAccess

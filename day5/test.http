@@ -1,0 +1,12 @@
+GET https://k69jm5s6ig.execute-api.us-east-1.amazonaws.com/dev-1
+
+### 
+GET https://k69jm5s6ig.execute-api.us-east-1.amazonaws.com/dev-1?id=02
+
+###
+POST https://k69jm5s6ig.execute-api.us-east-1.amazonaws.com/dev-1/
+Content-Type: application/json
+
+# {"name": "Peter", "id": "01"}
+# {"name": "Michael", "id": "02"}
+# {"name": "Ann", "id": "03"}
