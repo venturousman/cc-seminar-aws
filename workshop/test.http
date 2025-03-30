@@ -1,0 +1,16 @@
+GET http://3.129.24.7:6003/students
+
+###
+POST http://3.129.24.7:6003/students
+Content-Type: application/json
+
+{
+  "name": "Peter",
+  "id": "01"
+}
+
+###
+DELETE http://3.129.24.7:6003/students/1
+
+### 
+GET http://my-alb-1-442397925.us-east-2.elb.amazonaws.com:6003/students
